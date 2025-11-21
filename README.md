@@ -13,8 +13,8 @@ A simple Django web application for managing contact information. This project i
 
 
 ## screenshot
-![contactPage](assets/contact_list.png)
 ![imgsample](assets/contact.png)
+![contactPage](assets/contact_list.png)
 
 </div>
 
