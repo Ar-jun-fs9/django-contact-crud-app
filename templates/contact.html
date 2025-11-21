@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% comment %} {% block title %} 
+Contact
+{% endblock title %} {% endcomment %}
+
+{% block body %} 
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <form class="p-4 border rounded shadow-sm bg-light" method="post" action="/contact/" style="width: 100%; max-width: 500px;" >
+    {% csrf_token %}
+    <h3 class="mb-4 text-center">Contact Form</h3>
+
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone_number" class="form-label">Phone No.</label>
+      <input type="text" class="form-control" id="phone_number" name="phone" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10)" >
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-secondary w-100">Submit</button>
+
+    {% if success_message %}
+      <div id="success" class="alert alert-success mt-3" role="alert">
+        {{ success_message }}
+      </div>
+    {% endif %}
+    {% if email_error %}
+      <div  class="alert alert-danger mt-3" role="alert">
+        {{ email_error }}
+      </div>
+    {% endif %}
+    {% if num_error %}
+      <div class="alert alert-danger mt-3" role="alert">
+        {{ num_error }}
+      </div>
+    {% endif %}
+  </form>
+</div>
+
+</div>
+<script>
+  const successDiv = document.getElementById('success');
+  if (successDiv) {
+    setTimeout(() => {
+      successDiv.style.display = 'none';
+    }, 2000); // Hide after 2 seconds
+  }
+  const emailErrDiv = document.getElementById('email_err');
+  if (emailErrDiv) {
+    setTimeout(() => {
+      emailErrDiv.style.display = 'none';
+    }, 2000); // Hide after 2 seconds
+  } 
+
+  const numErrDiv = document.getElementById('num_err');
+  if (numErrDiv) {  
+    setTimeout(() => {
+      numErrDiv.style.display = 'none';
+    }, 2000); // Hide after 2 seconds
+  }
+</script>
+{% endblock body %}
